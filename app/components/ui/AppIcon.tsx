@@ -3,6 +3,7 @@
 import { Icon, IconProps } from "@iconify/react";
 
 const EMOJI_MAP: Record<string, string> = {
+  "🚢": "twemoji:ship",
   "🛒": "twemoji:shopping-cart",
   "📋": "twemoji:clipboard",
   "📊": "twemoji:bar-chart",

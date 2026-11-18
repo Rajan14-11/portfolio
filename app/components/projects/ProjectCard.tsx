@@ -3,29 +3,84 @@ import { ProjectType } from "@/app/data";
 import LinkButton from "@/app/components/ui/LinkButton";
 
 function getProjectTone(project: ProjectType) {
-  if (project.title.includes("ISRT")) {
-    return "MERN Security Tooling";
+  if (project.title.includes("Procurement") || project.title.includes("Maritime")) {
+    return "Supply Chain System";
+  }
+  if (project.title.includes("Tailor App")) {
+    return "Customer Portal";
   }
   if (project.title.includes("Vulnbounty")) {
-    return "Production Bug Bounty App";
+    return "Security Platform";
+  }
+  if (project.title.includes("Seclance")) {
+    return "High-Performance SPA";
   }
   if (project.title.includes("Flipkart Clone")) {
-    return "Full MERN Architecture";
+    return "Multi-App Architecture";
   }
   if (project.title.includes("Trello Clone")) {
-    return "Modern App Architecture";
+    return "Server Actions & State";
   }
   if (project.title.includes("OpenInApp")) {
-    return "Analytics Dashboard";
+    return "Data Visualization";
   }
-  if (project.badge === "Production") {
-    return project.badgeDetail ? `Shipped ${project.badgeDetail}` : "Shipped client work";
+  if (project.title.includes("ISRT")) {
+    return "Document Automation";
+  }
+  if (project.title.includes("Stripe")) {
+    return "Payment Integration";
+  }
+  if (project.title.includes("IosSolution")) {
+    return "Service Catalog";
+  }
+  if (project.title.includes("Tesla Clone")) {
+    return "Interface Replication";
+  }
+  if (project.title.includes("To Do List")) {
+    return "Real-Time Cloud Sync";
+  }
+  if (project.title.includes("WebLancer")) {
+    return "Directory Architecture";
+  }
+  if (project.title.includes("DaisyUI")) {
+    return "Design System Tokens";
+  }
+  if (project.title.includes("Simple Color")) {
+    return "DOM Color Engine";
   }
 
-  return "Featured build";
+  return "Web Application";
 }
 
 function getProjectHighlights(project: ProjectType) {
+  if (project.title.includes("Procurement") || project.title.includes("Maritime")) {
+    return [
+      "5-tier RBAC governing Chief Engineers, Procurement Officers, Managers, Admins, and external Suppliers.",
+      "RFQ blind-bidding vendor portal, PO rejection recovery flow, and atomic anti-over-delivery GRN controls.",
+    ];
+  }
+
+  if (project.title.includes("Tailor App")) {
+    return [
+      "Geolocation-based tailor discovery with multi-step custom garment ordering and status pipeline.",
+      "Integrated Razorpay payment gateway checkout with webhook verification and MongoDB persistence.",
+    ];
+  }
+
+  if (project.title.includes("Vulnbounty")) {
+    return [
+      "End-to-end vulnerability submission and triage pipeline with severity scoring and researcher profiles.",
+      "Automated bounty payout workflows with transaction histories and target program tracking.",
+    ];
+  }
+
+  if (project.title.includes("Seclance")) {
+    return [
+      "Single-page application built with Next.js and Tailwind CSS achieving a 98/100 Lighthouse SEO score.",
+      "Dynamic cybersecurity service catalog, technical blog system, and interactive inquiry scheduling.",
+    ];
+  }
+
   if (project.title.includes("ISRT")) {
     return [
       "Automated security report generation engine supporting DOCX exports.",
@@ -33,26 +88,10 @@ function getProjectHighlights(project: ProjectType) {
     ];
   }
 
-  if (project.title.includes("Vulnbounty")) {
-    return [
-      "Integrated payment gateway workflows for managing bounty payouts and researcher accounts.",
-      "Interactive target dashboard for tracking vulnerability reports and real-time statuses.",
-    ];
-  }
-
   if (project.title.includes("Flipkart Clone")) {
     return [
       "Separate user, admin, and backend surfaces.",
       "Authentication, CRUD flows, cart, and orders end to end.",
-      "Strongest MERN-aligned project for full-stack roles.",
-    ];
-  }
-
-  if (project.title.includes("Seclance")) {
-    return [
-      "Shipped as real client-facing production work.",
-      "Focused on service positioning, trust, and conversion-oriented layout.",
-      "Shows polished frontend delivery in an agency context.",
     ];
   }
 
@@ -60,7 +99,6 @@ function getProjectHighlights(project: ProjectType) {
     return [
       "Google-authenticated dashboard experience.",
       "Live API consumption with chart-driven views.",
-      "Good example of product-style analytics UI.",
     ];
   }
 
@@ -90,13 +128,7 @@ export default function ProjectCard({
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           <span>{getProjectTone(project)}</span>
         </div>
-        <span
-          className={`shrink-0 text-[10px] font-mono py-0.5 px-2 rounded-full font-medium border whitespace-nowrap ${
-            project.badge === "Production"
-              ? "bg-surface-soft-3 text-text-primary border-border-secondary"
-              : "bg-surface-soft text-text-tertiary border-border-primary"
-          }`}
-        >
+        <span className="shrink-0 text-[10px] font-mono py-0.5 px-2.5 rounded-full font-medium border whitespace-nowrap bg-surface-soft text-text-secondary border-border-primary">
           {project.badgeDetail ? project.badgeDetail : project.badge}
         </span>
       </div>
@@ -113,7 +145,7 @@ export default function ProjectCard({
       </div>
 
       <p
-        className={`text-text-secondary leading-relaxed mb-4 flex-1 ${
+        className={`text-text-secondary leading-relaxed mb-3.5 ${
           compact ? "text-[0.82rem]" : "text-[0.88rem]"
         }`}
       >
@@ -121,7 +153,7 @@ export default function ProjectCard({
       </p>
 
       {!compact && highlights.length > 0 && (
-        <div className="space-y-1.5 mb-4 p-3 rounded-lg bg-surface-soft border border-border-primary">
+        <div className="space-y-1.5 mb-3.5 p-3 rounded-lg bg-surface-soft border border-border-primary">
           <div className="text-[10px] font-mono uppercase tracking-wider text-text-tertiary font-semibold mb-1">
             Engineering Highlights
           </div>
@@ -138,7 +170,7 @@ export default function ProjectCard({
       )}
 
       {project.metric && (
-        <div className="inline-flex items-center gap-1.5 text-[0.75rem] font-mono font-medium text-text-primary bg-surface-soft-2 border border-border-primary py-1 px-2.5 rounded mb-4 w-fit">
+        <div className="inline-flex items-center gap-1.5 text-[0.75rem] font-mono font-medium text-text-primary bg-surface-soft-2 border border-border-primary py-1 px-2.5 rounded mb-3.5 w-fit">
           <span>⚡</span>
           <span>{project.metric}</span>
         </div>
@@ -156,7 +188,7 @@ export default function ProjectCard({
       </div>
 
       {(project.demo || project.github || project.githubLinks?.length || (project.video && project.video !== "#")) && (
-        <div className="flex gap-2 flex-wrap mt-auto pt-2 border-t border-border-primary">
+        <div className="flex gap-2 flex-wrap mt-auto pt-3 border-t border-border-primary">
           {project.demo && (
             <LinkButton
               href={project.demo}

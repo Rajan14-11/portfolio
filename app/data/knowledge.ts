@@ -27,30 +27,32 @@ SKILLS:
 - MERN/Node: React, Node.js, Express, MongoDB, JS(ES6+), Redux/RTK, JWT, REST
 - Py/Django: Django, Python, Celery, Channels, WebSockets, ASGI, Postgres, Redis
 - Frontend: Next.js, TypeScript, Tailwind, SCSS, Bootstrap, React Query, AntD, MUI, Shadcn
-- Infra/Tools: SpeechSuper, OpenRouter, Mixpanel, PostHog, Apps Script, Razorpay, Stripe, Axios, NextAuth, Chart.js, Electron, AWS(EC2/S3), Vercel
+- Infra/Tools: Prisma, PostgreSQL, SpeechSuper, OpenRouter, Mixpanel, PostHog, Apps Script, Razorpay, Stripe, Axios, NextAuth, Chart.js, Electron, AWS(EC2/S3), Vercel
 - AI: Claude, Cursor, Copilot, Windsurf, Antigravity
 
 PROJECTS:
-1. Vulnbounty (React, Tailwind, Axios, Payments) - Bug bounty platform, auth, targets.
-2. ISRT (Node, Express, Mongo, React, MUI, Chart.js) - Infosec reporting tools, automated PDF/DOCX/XLSX generation.
-3. Flipkart Clone (Node, Express, Mongo, React, JWT) - Full MERN E-Commerce, User/Admin/Backend, Auth, Cart, Orders.
-4. Tailor App (Next.js, Tailwind, TS) - Customer portal for orders.
-5. Seclance SPA (Next.js, Tailwind, TS) - Cyber agency site, 98 SEO.
-6. Trello Clone (Next.js, Tailwind, Clerk, Prisma, Mongo) - Task mgmt, drag-drop, server actions.
-7. OpenInApp (Next.js, Tailwind, Chart.js, NextAuth, REST) - Live API analytics dashboard.
-8. E-Commerce App (React, Redux, Stripe, CSS) - Shopping, cart, checkout.
-9. IosSolution (Next.js, Tailwind) - Repair center SPA.
-10. Tesla Clone (React, Firebase, MUI) - Static showcase.
-11. To Do List (React, Firebase, MUI) - Persistent task tracker.
-12. WebLancer (Next.js, Tailwind) - Freelancer portfolio platform.
-13. DaisyUI Theme (Next.js, Tailwind, DaisyUI) - Cyber services showcase.
-14. Simple Color Website (HTML, CSS, JS) - Palette showcase.
+1. Maritime Procurement System (TypeScript, React 19, Express, Node, Prisma, Postgres, Tailwind) - Full-stack supply chain management system, 5-tier RBAC, blind bidding vendor portal, quote comparison matrix, PO authorization & rejection recovery, atomic anti-over-delivery GRN controls, audit logging. GitHub: github.com/Rajan14-11/maritime-procurement-system
+2. Tailor App (Next.js, Tailwind, TS, Node, Express, Mongo, Razorpay) - Customer portal for custom tailoring orders, geolocation discovery, multi-step checkout.
+3. Vulnbounty (React, Tailwind, Axios, Razorpay, JWT) - Bug bounty platform, auth, vulnerability triage, payout workflows.
+4. Seclance SPA (Next.js, Tailwind, TS, Node, Express, Mongo) - Cybersecurity agency web platform, 98/100 Lighthouse SEO.
+5. Flipkart Clone (Node, Express, Mongo, React, JWT) - Full MERN E-Commerce, User/Admin/Backend, Auth, Cart, Orders.
+6. ISRT (Node, Express, Mongo, React, MUI, Chart.js) - Infosec reporting tools, automated PDF/DOCX/XLSX generation.
+7. Trello Clone (Next.js, Tailwind, Clerk, Prisma, Mongo) - Task mgmt, drag-drop, server actions.
+8. OpenInApp (Next.js, Tailwind, Chart.js, NextAuth, REST) - Live API analytics dashboard.
+9. E-Commerce App (React, Redux, Stripe, CSS) - Shopping, cart, checkout.
+10. IosSolution (Next.js, Tailwind) - Repair center SPA.
+11. Tesla Clone (React, Firebase, MUI) - Static showcase.
+12. To Do List (React, Firebase, MUI) - Persistent task tracker.
+13. WebLancer (Next.js, Tailwind) - Freelancer portfolio platform.
+14. DaisyUI Theme (Next.js, Tailwind, DaisyUI) - Cyber services showcase.
+15. Simple Color Website (HTML, CSS, JS) - Palette showcase.
 
 EDU: B.E. CS, UIET (Panjab Univ) 2020-2024, 8.54 CGPA
 
 ROLE FIT & FAQ:
 - Fits MERN, Full-Stack, Frontend (React/Next), Backend (Django/Python) roles.
+- System architecture exp: Full-stack supply chain systems, blind bidding vendor portals, role-based governance, and transaction-safe audit trails.
 - Real-time exp: WebRTC, Channels, Redis.
 - AI exp: OpenRouter LLM APIs.
-- Production exp is heavily React/Django, but project work shows deep MERN capability.
+- Core stack depth spans React, Next.js, Django, Node.js, and Prisma.
 `;

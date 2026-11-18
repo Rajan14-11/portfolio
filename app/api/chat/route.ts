@@ -61,11 +61,16 @@ function getFallbackResponse(query: string): string {
     q.includes("project") ||
     q.includes("built") ||
     q.includes("portfolio") ||
+    q.includes("procure") ||
+    q.includes("maritime") ||
+    q.includes("erp") ||
+    q.includes("tailor") ||
+    q.includes("vulnbounty") ||
     q.includes("flipkart") ||
     q.includes("trello") ||
     q.includes("openinapp")
   ) {
-    return "Rajan's featured projects include a full-stack Flipkart Clone (MERN architecture with user, admin, and backend apps), a Trello Clone (Next.js, Clerk, Prisma, MongoDB), a Stripe E-Commerce app, an OpenInApp analytics dashboard, and Seclance client production sites.";
+    return "Rajan's featured live projects include the Maritime Procurement Management System (full-stack TypeScript supply chain platform with 5-tier RBAC, supplier blind bidding, PO rejection recovery, and atomic anti-over-delivery controls), the Tailor App customer portal (Next.js, Razorpay payments, geolocation search), Vulnbounty (security coordination & payout workflows), and the Seclance cybersecurity web application.";
   }
 
   if (

@@ -19,37 +19,37 @@ export default function ExperienceCard({
   isLast: boolean;
 }) {
   return (
-    <ScrollReveal delay={index * 100}>
-      <div className="flex gap-[1.35rem] mb-[2.1rem] relative">
+    <ScrollReveal delay={index * 80}>
+      <div className="flex gap-4 mb-8 relative">
         {/* Connector line */}
         {!isLast && (
-          <div className="absolute left-[19px] top-[42px] -bottom-[20px] w-[1px] bg-border-primary" />
+          <div className="absolute left-[17px] top-[38px] -bottom-[20px] w-[1px] bg-border-primary" />
         )}
         {/* Dot */}
-        <div className="w-[40px] h-[40px] rounded-full bg-[linear-gradient(135deg,rgba(34,211,238,0.16),rgba(59,130,246,0.16))] border-2 border-primary flex items-center justify-center shrink-0 text-[0.65rem] font-bold text-primary">
+        <div className="w-9 h-9 rounded-full bg-surface-soft border border-border-secondary flex items-center justify-center shrink-0 text-[10px] font-mono font-semibold text-text-primary">
           {item.short}
         </div>
-        <div className="flex-1 bg-surface-soft border border-[rgba(51,65,85,0.52)] rounded-[20px] pt-[1.15rem] px-[1.2rem] pb-[1.2rem]">
-          <div className="text-[0.75rem] text-primary font-[600] mb-[0.2rem] tracking-[0.05em]">
+        <div className="flex-1 bg-card border border-border-primary rounded-xl p-5 shadow-sm">
+          <div className="text-[11px] font-mono text-text-tertiary mb-1">
             {item.date}
           </div>
-          <div className="font-[710] text-text-primary mb-[0.15rem] text-[1.06rem]">
+          <h3 className="font-semibold text-text-primary text-base mb-0.5">
             {item.title}
-          </div>
-          <div className="text-[0.82rem] text-text-tertiary mb-[0.5rem]">
+          </h3>
+          <div className="text-xs text-text-tertiary mb-3 font-medium">
             {item.company}
           </div>
-          <div className="text-[0.83rem] text-text-secondary leading-[1.7]">
+          <p className="text-xs text-text-secondary leading-relaxed mb-4">
             {item.desc}
-          </div>
-          <div className="experience-highlights grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[0.7rem] mt-4">
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-2">
             {item.highlights.map((point) => (
               <div
                 key={point}
-                className="flex gap-[0.75rem] items-start bg-surface-soft-3 border border-border-primary rounded-[12px] py-[0.8rem] px-[0.95rem]"
+                className="flex gap-2.5 items-start bg-surface-soft border border-border-primary rounded-lg p-3"
               >
-                <span className="w-2 h-2 rounded-full bg-primary mt-[0.45rem] shrink-0 shadow-[0_0_0_4px_var(--primary-faint)]" />
-                <span className="text-[0.81rem] text-text-secondary leading-[1.72]">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                <span className="text-[11px] text-text-secondary leading-relaxed">
                   {point}
                 </span>
               </div>

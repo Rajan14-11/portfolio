@@ -57,14 +57,14 @@ export default function SkillsSection() {
               "Use integrations, analytics, and AI tools to help products scale beyond just the frontend layer.",
             ].map((item) => (
               <div key={item} className="flex gap-[0.65rem] items-start text-text-secondary text-[0.84rem] leading-[1.7]">
-                <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_0_4px_var(--primary-faint)] mt-[0.36rem] shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                 <span>{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-surface-panel-alt border border-primary-border rounded-[20px] py-[1.45rem] px-[1.6rem] animate-[glowPulse_3s_ease-in-out_infinite]">
+        <div className="bg-card border border-border-primary rounded-[20px] py-[1.45rem] px-[1.6rem] shadow-sm">
           <div className="flex items-center gap-[0.8rem] mb-[0.8rem]">
             <AppIcon icon="🛠️" size="1.4em" />
             <div>
@@ -76,11 +76,11 @@ export default function SkillsSection() {
               </div>
             </div>
           </div>
-          <div className="flex gap-[0.55rem] flex-wrap">
+          <div className="flex gap-2 flex-wrap">
             {aiTools.map((tool) => (
               <span
                 key={tool}
-                className="text-[0.78rem] py-[0.35rem] px-[0.85rem] rounded-[20px] bg-primary-faint text-primary border border-primary-border font-[600]"
+                className="text-[11px] font-mono py-1 px-3 rounded-md bg-surface-soft text-text-secondary border border-border-primary hover:text-text-primary hover:border-border-secondary transition-colors font-medium"
               >
                 {tool}
               </span>

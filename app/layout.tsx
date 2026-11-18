@@ -57,9 +57,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={publicSans.variable}
+      className={`${publicSans.variable} bg-bg text-text-primary`}
     >
-      <body>
+      <body className="bg-bg text-text-primary min-h-screen transition-colors duration-200">
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>

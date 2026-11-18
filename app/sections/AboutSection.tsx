@@ -57,7 +57,7 @@ export default function AboutSection() {
                       key={point}
                       className="flex gap-[0.6rem] items-center text-text-secondary text-[0.82rem] leading-[1.5] font-[520]"
                     >
-                      <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_0_4px_var(--primary-faint)] shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                       <span>{point}</span>
                     </div>
                   ))}

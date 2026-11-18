@@ -3,167 +3,123 @@ import { heroProofPoints, heroStrengths, heroTags, personal } from "@/app/data";
 
 export default function HeroSection() {
   return (
-    <section className="hero-section relative flex flex-col justify-center max-w-[1100px] mx-auto overflow-hidden px-4 md:px-8 pb-8 pt-[calc(60px+1.5rem)]">
-      {/* Animated background glow */}
-      <div
-        aria-hidden
-        className="absolute -top-[10%] -right-[5%] w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,var(--primary-faint)_0%,transparent_70%)] blur-[40px] animate-[floatSlow_8s_ease-in-out_infinite] pointer-events-none z-0"
-      />
-      <div
-        aria-hidden
-        className="absolute -bottom-[15%] -left-[8%] w-[320px] h-[320px] rounded-full bg-[radial-gradient(circle,var(--primary-faint)_0%,transparent_70%)] blur-[40px] animate-[floatSlow_10s_ease-in-out_infinite_reverse] pointer-events-none z-0"
-      />
-
-      <div className="hero-layout relative z-10 grid gap-8 items-center grid-cols-1 md:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
+    <section className="hero-section relative flex flex-col justify-center min-h-[calc(100vh-64px)] max-w-[1100px] mx-auto px-4 md:px-8 pb-10 pt-[calc(64px+2rem)]">
+      <div className="hero-layout relative z-10 grid gap-10 items-center grid-cols-1 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
         <div>
-          <div className="fade-up-1 inline-flex items-center gap-2 mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#4ADE80] inline-block animate-pulse" />
-            <span className="eyebrow !mb-0">
-              Available for opportunities
+          {/* Status Indicator */}
+          <div className="fade-up-1 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-primary bg-surface-soft text-xs text-text-secondary mb-5 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
+            <span className="font-mono text-[11px] text-text-primary font-medium tracking-wide">
+              Available for Full-Stack Roles
+            </span>
+            <span className="text-border-secondary">|</span>
+            <span className="text-text-tertiary text-[11px] font-mono">Gurgaon / Remote</span>
           </div>
 
-          <h1 className="fade-up-2 text-[clamp(2.6rem,7vw,5rem)] font-[740] leading-[0.96] tracking-[-0.06em] text-text-primary mb-2">
-            Rajan{" "}
-            <span
-              className="gradient-text bg-[linear-gradient(90deg,var(--primary),#60E8FF,var(--primary))] bg-[length:200%_auto] text-transparent bg-clip-text animate-[gradientShift_4s_ease_infinite]"
-            >
-              Goyal
-            </span>
+          {/* Heading */}
+          <h1 className="fade-up-2 text-[clamp(2.75rem,6.8vw,4.5rem)] font-[750] leading-[1.02] tracking-[-0.05em] text-text-primary mb-3">
+            Rajan Goyal
           </h1>
 
-          <p className="fade-up-3 text-[clamp(1rem,2.2vw,1.22rem)] text-text-secondary font-[540] mb-4 tracking-[-0.02em]">
-            {personal.role} <span className="text-text-tertiary">|</span>{" "}
-            <span className="text-primary">{personal.tagline}</span>
+          <p className="fade-up-3 text-[clamp(1.05rem,2.2vw,1.25rem)] text-text-secondary font-medium mb-4 tracking-[-0.02em]">
+            {personal.role} <span className="text-text-tertiary mx-1">·</span>{" "}
+            <span className="text-text-primary font-semibold">{personal.tagline}</span>
           </p>
 
-          <p className="fade-up-4 text-base text-text-secondary max-w-[680px] leading-[1.82] mb-[1.15rem]">
-            2+ years building and optimizing production products for a{" "}
-            <strong className="text-text-primary">30,000 MAU edtech platform</strong>.
-            Strongest in <strong className="text-text-primary">React + Django systems</strong>,
-            with hands-on <strong className="text-text-primary">MERN full-stack</strong>{" "}
-            project experience across e-commerce, dashboards, and real-time product features.
+          <p className="fade-up-4 text-[0.95rem] text-text-secondary max-w-[620px] leading-[1.8] mb-5">
+            2+ years building and optimizing production systems for a{" "}
+            <span className="text-text-primary font-semibold">30,000 MAU edtech platform</span>.
+            Deep experience across <span className="text-text-primary font-semibold">React + Django architectures</span>{" "}
+            and hands-on <span className="text-text-primary font-semibold">MERN stack</span>{" "}
+            engineering for real-time features, dashboards, and scalable APIs.
           </p>
 
-          <div className="fade-up-4 flex gap-2 flex-wrap mb-5">
-            {heroTags.map((tag, i) => (
+          {/* Skill / Capability Chips */}
+          <div className="fade-up-4 flex gap-1.5 flex-wrap mb-6">
+            {heroTags.map((tag) => (
               <span
                 key={tag}
-                className="tag tag-pop"
-                style={{ animationDelay: `${0.25 + i * 0.04}s` }}
+                className="text-[0.75rem] font-mono py-1 px-2.5 rounded-md bg-surface-soft border border-border-primary text-text-secondary hover:text-text-primary hover:border-border-secondary transition-colors"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <div className="fade-up-5 flex gap-3 flex-wrap mb-[1.6rem]">
+          {/* Proof Strip (Metrics) */}
+          <div className="fade-up-5 grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-7 max-w-[640px]">
             {heroProofPoints.map((point) => (
               <div
                 key={point}
-                className="inline-flex items-center gap-[0.55rem] py-[0.7rem] px-[0.95rem] rounded-full border border-border-primary bg-surface-soft-3 text-text-secondary text-[0.8rem] font-[520] backdrop-blur-sm"
+                className="p-3 rounded-lg border border-border-primary bg-surface-soft/60 backdrop-blur-sm"
               >
-                <span className="w-[7px] h-[7px] rounded-full bg-primary shadow-[0_0_0_4px_var(--primary-faint)] shrink-0" />
-                <span>{point}</span>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <span className="text-text-secondary text-[0.78rem] font-medium leading-snug">
+                    {point}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="fade-up-6 flex gap-4 flex-wrap">
-            <Link href="/projects" className="btn-primary hero-btn-primary">
-              View Selected Work →
+          {/* Actions */}
+          <div className="fade-up-6 flex gap-3 flex-wrap items-center">
+            <Link href="/projects" className="btn-primary group">
+              <span>View Selected Work</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
             </Link>
-            <Link href="/contact" className="btn-outline hero-btn">
+            <Link href="/contact" className="btn-outline">
               Get in Touch
             </Link>
             <a
               href={personal.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-ghost hero-btn"
+              className="btn-ghost"
             >
-              Download CV ↗
+              Resume ↗
             </a>
           </div>
         </div>
 
-        <div className="fade-up-5 hero-aside max-w-[720px] md:max-w-none bg-surface-panel-alt border border-border-primary rounded-[22px] p-[1.6rem] shadow-[0_22px_60px_-32px_rgba(34,211,238,0.35)] relative overflow-hidden">
-          <div
-            aria-hidden
-            className="absolute -bottom-[22%] -right-[18%] w-[180px] h-[180px] rounded-full bg-[radial-gradient(circle,var(--primary-faint)_0%,transparent_72%)] blur-[12px]"
-          />
+        {/* Aside Engineering Bento */}
+        <div className="fade-up-5 bg-card border border-border-primary rounded-2xl p-6 relative overflow-hidden shadow-[0_12px_36px_-16px_rgba(0,0,0,0.5)]">
+          <div className="flex items-center justify-between pb-3 mb-4 border-b border-border-primary">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-primary font-semibold">
+              Engineering Profile
+            </span>
+            <span className="text-[10px] font-mono text-text-tertiary">2+ YRS EXP</span>
+          </div>
 
-          <div className="relative z-10">
-            <div className="text-[0.72rem] tracking-[0.16em] uppercase text-primary font-bold mb-3">
-              Why Teams Hire Me
-            </div>
-            <div className="text-[1.15rem] font-[680] text-text-primary leading-[1.25] tracking-[-0.03em] mb-4">
-              Full-stack engineer with product depth, not just portfolio breadth.
-            </div>
+          <div className="text-[1.05rem] font-semibold text-text-primary leading-[1.35] tracking-[-0.02em] mb-4">
+            Production depth with focus on real metrics, performance, and clean maintainability.
+          </div>
 
-            <div className="grid gap-[0.8rem] mb-[1.15rem]">
-              {heroStrengths.map((item) => (
-                <div key={item} className="flex gap-3 items-start">
-                  <span className="w-[9px] h-[9px] rounded-full bg-primary mt-[0.38rem] shrink-0" />
-                  <span className="text-text-secondary text-[0.85rem] leading-[1.72] font-[470]">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="space-y-3 mb-5">
+            {heroStrengths.map((item) => (
+              <div key={item} className="flex gap-2.5 items-start text-[0.82rem] text-text-secondary leading-relaxed">
+                <span className="text-primary mt-0.5 shrink-0 text-xs font-mono">✦</span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
 
-            <div className="flex gap-2 flex-wrap">
-              {["MERN Roles", "Full-Stack Teams", "Product Startups"].map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-primary-border bg-primary-faint text-primary py-[0.4rem] px-[0.8rem] text-[0.74rem] font-[620]"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+          <div className="pt-3 border-t border-border-primary flex gap-1.5 flex-wrap">
+            {["React / Next.js", "Python / Django", "MERN Stack", "Real-Time / ASGI"].map((item) => (
+              <span
+                key={item}
+                className="text-[10px] font-mono py-0.5 px-2 rounded bg-surface-soft-2 text-text-secondary border border-border-primary"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
-        }
-        @keyframes tagPop {
-          from { opacity: 0; transform: scale(0.8) translateY(6px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .tag-pop {
-          opacity: 0;
-          animation: tagPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-        }
-        .hero-btn-primary, .hero-btn {
-          transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s, box-shadow 0.2s;
-        }
-        .hero-btn-primary:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 8px 20px -4px var(--primary-border);
-        }
-        .hero-btn:hover {
-          transform: translateY(-2px) scale(1.02);
-        }
-        /* Fit hero to viewport on larger screens, allow natural scroll on small screens */
-        @media (min-height: 700px) and (min-width: 641px) {
-          .hero-section {
-            min-height: calc(100vh - 60px);
-            height: calc(100vh - 60px);
-          }
-        }
-        @media (max-width: 640px), (max-height: 699px) {
-          .hero-section {
-            min-height: calc(100vh - 60px);
-            height: auto;
-            padding-bottom: 3rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

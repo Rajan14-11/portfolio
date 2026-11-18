@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import type { Message } from "@/app/api/chat/route";
 
 const SUGGESTED_QUESTIONS = [
-  "What's Rajan's main tech stack?",
-  "Has he worked with real-time systems?",
-  "Is he open to remote roles?",
-  "What has he built at Freadom?",
+  "What is Rajan's primary tech stack?",
+  "How did he reduce bundle size at Freadom?",
+  "What is his experience with real-time systems?",
+  "Is he available for remote or on-site roles?",
 ];
 
 export default function ChatWidget() {
@@ -16,7 +16,7 @@ export default function ChatWidget() {
     {
       role: "assistant",
       content:
-        "Hi! 👋 I'm Rajan's AI assistant. Ask me anything about his skills, experience, or projects — I'll give you honest answers based on his actual work.",
+        "Hello! I am Rajan's portfolio assistant. Ask me anything about his production engineering experience, tech stack, or specific projects.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -63,7 +63,7 @@ export default function ChatWidget() {
         ...prev,
         {
           role: "assistant",
-          content: "Network error — please try again.",
+          content: "Network error — please check connection and try again.",
         },
       ]);
     } finally {
@@ -82,35 +82,35 @@ export default function ChatWidget() {
     <>
       {/* Chat window */}
       {open && (
-        <div className="fixed bottom-[90px] right-6 w-[360px] max-w-[calc(100vw-2rem)] h-[480px] bg-card border border-primary-border rounded-2xl flex flex-col z-[200] shadow-[0_8px_40px_rgba(0,0,0,0.35)] overflow-hidden">
+        <div className="fixed bottom-[84px] right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[500px] bg-card border border-border-secondary rounded-2xl flex flex-col z-[200] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] overflow-hidden animate-[scaleIn_0.18s_cubic-bezier(0.16,1,0.3,1)]">
           {/* Header */}
-          <div className="p-[1rem_1.25rem] border-b border-border-primary flex items-center justify-between bg-bg2 shrink-0">
-            <div className="flex items-center gap-[0.65rem]">
-              <div className="w-[34px] h-[34px] rounded-full bg-[linear-gradient(135deg,var(--primary),#3B82F6)] flex items-center justify-center text-[0.75rem] font-[800] text-[#0F172A] shrink-0">
+          <div className="p-3.5 px-4 border-b border-border-primary flex items-center justify-between bg-surface-soft shrink-0">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-full bg-surface-soft-3 border border-border-secondary flex items-center justify-center text-[10px] font-mono font-bold text-text-primary shrink-0">
                 RG
               </div>
               <div>
-                <div className="font-bold text-[0.88rem] text-text-primary">
-                  Ask Rajan&apos;s Portfolio
+                <div className="font-semibold text-xs text-text-primary tracking-tight">
+                  Portfolio Assistant
                 </div>
-                <div className="flex items-center gap-[0.35rem] mt-[1px]">
-                  <span className="w-[6px] h-[6px] rounded-full bg-[#4ADE80] inline-block" />
-                  <span className="text-[0.72rem] text-text-tertiary">
-                    Powered by Groq AI
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                  <span className="text-[10px] font-mono text-text-tertiary">
+                    Groq LPU Inference
                   </span>
                 </div>
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="bg-transparent border-none text-text-tertiary text-[1.1rem] cursor-pointer p-1 leading-none"
+              className="w-7 h-7 rounded-lg border border-border-primary bg-surface-soft hover:bg-surface-soft-2 text-text-tertiary hover:text-text-primary flex items-center justify-center transition-colors text-xs cursor-pointer active:scale-95"
               aria-label="Close chat"
             >
               ✕
             </button>
           </div>
 
-          {/* Messages */}
+          {/* Messages container */}
           <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
             {messages.map((msg, i) => (
               <div
@@ -120,10 +120,10 @@ export default function ChatWidget() {
                 }`}
               >
                 <div
-                  className={`max-w-[82%] p-[0.65rem_0.9rem] text-[0.83rem] leading-[1.6] ${
+                  className={`max-w-[85%] p-3 text-[0.82rem] leading-relaxed ${
                     msg.role === "user"
-                      ? "rounded-[12px_12px_2px_12px] bg-primary text-[#0F172A] font-[600]"
-                      : "rounded-[12px_12px_12px_2px] bg-bg2 text-text-primary font-[400] border border-border-primary"
+                      ? "rounded-2xl rounded-tr-sm bg-text-primary text-bg font-medium"
+                      : "rounded-2xl rounded-tl-sm bg-surface-soft-2 text-text-primary border border-border-primary"
                   }`}
                 >
                   {msg.content}
@@ -131,33 +131,29 @@ export default function ChatWidget() {
               </div>
             ))}
 
-            {/* Loading dots */}
+            {/* Loading indicator */}
             {loading && (
               <div className="flex justify-start">
-                <div className="p-[0.65rem_1rem] rounded-[12px_12px_12px_2px] bg-bg2 border border-border-primary flex gap-1 items-center">
-                  {[0, 1, 2].map((i) => (
-                    <span
-                      key={i}
-                      className="w-[6px] h-[6px] rounded-full bg-primary inline-block"
-                      style={{ animation: `dotBounce 1.2s infinite ${i * 0.2}s` }}
-                    />
-                  ))}
+                <div className="p-2.5 px-3.5 rounded-2xl rounded-tl-sm bg-surface-soft border border-border-primary flex gap-1.5 items-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-text-tertiary animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-text-tertiary animate-pulse [animation-delay:0.2s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-text-tertiary animate-pulse [animation-delay:0.4s]" />
                 </div>
               </div>
             )}
 
             {/* Suggested questions */}
             {showSuggestions && messages.length === 1 && (
-              <div className="mt-2">
-                <div className="text-[0.72rem] text-text-tertiary mb-2">
-                  Try asking:
+              <div className="mt-2 pt-2 border-t border-border-primary">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-text-tertiary mb-2">
+                  Suggested inquiries
                 </div>
-                <div className="flex flex-col gap-[0.4rem]">
+                <div className="flex flex-col gap-1.5">
                   {SUGGESTED_QUESTIONS.map((q) => (
                     <button
                       key={q}
                       onClick={() => send(q)}
-                      className="text-left bg-primary-faint border border-primary-border rounded-lg p-[0.5rem_0.75rem] text-[0.78rem] text-primary cursor-pointer transition-colors duration-200 font-inherit font-[500] hover:bg-primary hover:text-[#0F172A]"
+                      className="text-left bg-surface-soft border border-border-primary hover:border-border-secondary hover:bg-surface-soft-2 rounded-lg p-2 px-3 text-[11px] text-text-secondary hover:text-text-primary cursor-pointer transition-colors font-medium"
                     >
                       {q}
                     </button>
@@ -169,56 +165,54 @@ export default function ChatWidget() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-[0.75rem_1rem] border-t border-border-primary flex gap-2 bg-bg2 shrink-0">
+          {/* Input field */}
+          <div className="p-3 border-t border-border-primary flex gap-2 bg-surface-soft shrink-0">
             <input
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask anything about Rajan..."
+              placeholder="Ask about skills, work at Freadom..."
               disabled={loading}
-              className="flex-1 bg-card border border-border-primary rounded-lg p-[0.55rem_0.85rem] text-[0.83rem] text-text-primary outline-none font-inherit transition-colors duration-200 focus:border-primary"
+              className="flex-1 bg-card border border-border-primary rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-tertiary outline-none transition-colors focus:border-border-secondary"
             />
             <button
               onClick={() => send(input)}
               disabled={loading || !input.trim()}
-              className={`border-none rounded-lg w-9 h-9 flex items-center justify-center shrink-0 transition-colors duration-200 text-base ${
+              className={`border-none rounded-lg px-3 flex items-center justify-center shrink-0 transition-all text-xs font-semibold ${
                 input.trim() && !loading
-                  ? "bg-primary text-[#0F172A] cursor-pointer hover:opacity-90"
-                  : "bg-border-primary text-text-secondary cursor-not-allowed"
+                  ? "bg-text-primary text-bg cursor-pointer hover:opacity-90 active:scale-95"
+                  : "bg-surface-soft-3 text-text-tertiary cursor-not-allowed"
               }`}
               aria-label="Send message"
             >
-              ↑
+              ↵
             </button>
           </div>
         </div>
       )}
 
-      {/* FAB trigger button */}
+      {/* Modern Capsule FAB */}
       <button
         onClick={() => setOpen((o) => !o)}
-        aria-label="Open portfolio chat"
-        className={`fixed bottom-6 right-6 w-14 h-14 rounded-full border-none cursor-pointer flex items-center justify-center text-[1.3rem] z-[200] transition-all duration-200 ${
+        aria-label="Open portfolio assistant"
+        className={`fixed bottom-6 right-6 inline-flex items-center gap-2.5 py-2 px-3.5 rounded-full border shadow-lg cursor-pointer transition-all duration-200 z-[200] active:scale-95 ${
           open
-            ? "bg-border-secondary text-text-primary rotate-45 scale-90 shadow-none"
-            : "bg-primary text-[#0F172A] scale-100 shadow-[0_4px_20px_rgba(34,211,238,0.35)] animate-[fabPulse_3s_ease-in-out_infinite]"
+            ? "bg-surface-soft-3 border-border-secondary text-text-primary"
+            : "bg-card border-border-primary hover:border-border-secondary text-text-primary hover:shadow-xl"
         }`}
       >
-        {open ? "✕" : "💬"}
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span className="text-xs font-medium tracking-tight">
+          {open ? "Close Assistant" : "Ask Portfolio AI"}
+        </span>
+        <span className="text-[10px] font-mono text-text-tertiary px-1 py-0.5 rounded bg-surface-soft border border-border-primary">
+          {open ? "Esc" : "↵"}
+        </span>
       </button>
-
-      <style>{`
-        @keyframes dotBounce {
-          0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-          40% { transform: translateY(-5px); opacity: 1; }
-        }
-        @keyframes fabPulse {
-          0%, 100% { box-shadow: 0 4px 20px rgba(34,211,238,0.35); }
-          50% { box-shadow: 0 4px 28px rgba(34,211,238,0.6), 0 0 0 6px var(--primary-faint); }
-        }
-      `}</style>
     </>
   );
 }

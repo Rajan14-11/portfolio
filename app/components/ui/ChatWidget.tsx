@@ -96,7 +96,7 @@ export default function ChatWidget() {
                 <div className="flex items-center gap-[0.35rem] mt-[1px]">
                   <span className="w-[6px] h-[6px] rounded-full bg-[#4ADE80] inline-block" />
                   <span className="text-[0.72rem] text-text-tertiary">
-                    Powered by Groq Llama 3.3
+                    Powered by Groq AI
                   </span>
                 </div>
               </div>

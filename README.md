@@ -8,7 +8,7 @@ A professional portfolio showcasing full-stack engineering work, designed and bu
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4, custom CSS variables for premium glassmorphism and glow effects
 - **Components**: Server-side rendered by default, client components used strictly where interaction or hooks (e.g., `useState`, `IntersectionObserver`) are required
-- **AI Integration**: Groq Llama 3.3 for real-time portfolio QA (ChatWidget)
+- **AI Integration**: Groq AI (Qwen 3.8 / GPT-OSS) for real-time portfolio QA (ChatWidget)
 
 ## Architecture Highlights
 

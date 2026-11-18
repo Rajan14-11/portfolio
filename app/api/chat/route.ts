@@ -106,50 +106,71 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: fallbackText });
     }
 
-    try {
-      // Limit chat history to the last 3 messages to drastically save tokens
-      const recentMessages = messages.slice(-3);
-      const groqMessages = [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...recentMessages.map((m) => ({
-          role: m.role === "assistant" ? "assistant" : "user",
-          content: m.content,
-        })),
-      ];
+    // Limit chat history to the last 3 messages to drastically save tokens
+    const recentMessages = messages.slice(-3);
+    const groqMessages = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...recentMessages.map((m) => ({
+        role: m.role === "assistant" ? "assistant" : "user",
+        content: m.content,
+      })),
+    ];
 
-      const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: groqMessages,
-          temperature: 0.5,
-          max_tokens: 500,
-        }),
-      });
+    // Priority list of models with high limits on Groq free tier
+    const candidateModels = [
+      process.env.GROQ_MODEL,
+      "qwen/qwen3.8-27b",
+      "openai/gpt-oss-20b",
+      "openai/gpt-oss-120b",
+    ].filter((m, idx, arr): m is string => Boolean(m) && arr.indexOf(m) === idx);
 
-      if (!groqRes.ok) {
-        const errorData = await groqRes.json().catch(() => null);
-        throw new Error(errorData?.error?.message || `Groq API HTTP ${groqRes.status}`);
+    let replyText = "";
+
+    for (const model of candidateModels) {
+      try {
+        const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model,
+            messages: groqMessages,
+            temperature: 0.5,
+            max_tokens: 400,
+          }),
+        });
+
+        if (!groqRes.ok) {
+          const errorData = await groqRes.json().catch(() => null);
+          throw new Error(errorData?.error?.message || `Groq API HTTP ${groqRes.status}`);
+        }
+
+        const groqData = await groqRes.json();
+        const choice = groqData.choices?.[0]?.message;
+        const text = choice?.content?.trim() || choice?.reasoning?.trim();
+
+        if (!text) {
+          throw new Error(`Empty response from Groq API (${model})`);
+        }
+
+        replyText = text;
+        break;
+      } catch (apiErr: unknown) {
+        const errMessage = apiErr instanceof Error ? apiErr.message : String(apiErr);
+        console.warn(`Groq API attempt with model "${model}" failed:`, errMessage);
       }
-
-      const groqData = await groqRes.json();
-      const text = groqData.choices?.[0]?.message?.content;
-
-      if (!text) {
-        throw new Error("Empty response from Groq API");
-      }
-
-      return NextResponse.json({ message: text });
-    } catch (apiErr: unknown) {
-      const errMessage = apiErr instanceof Error ? apiErr.message : String(apiErr);
-      console.warn("Groq API call failed, using knowledge fallback:", errMessage);
-      const fallbackText = getFallbackResponse(lastMessage.content);
-      return NextResponse.json({ message: fallbackText });
     }
+
+    if (replyText) {
+      return NextResponse.json({ message: replyText });
+    }
+
+    // Fall back to offline knowledge base if all model attempts fail
+    console.warn("All Groq API models failed, using knowledge fallback");
+    const fallbackText = getFallbackResponse(lastMessage.content);
+    return NextResponse.json({ message: fallbackText });
   } catch (error: unknown) {
     console.error("Chat API outer error:", error);
     return NextResponse.json({
